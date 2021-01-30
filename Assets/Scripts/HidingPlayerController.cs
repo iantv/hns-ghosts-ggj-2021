@@ -187,6 +187,7 @@ public class HidingPlayerController : MonoBehaviour
     public void GetDamaged(float damage)
     {
         health -= damage;
+        Debug.Log(health);
         if (health <= 0)
         {
             Destroy(this.gameObject);

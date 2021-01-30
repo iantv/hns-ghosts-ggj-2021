@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83984336eb092e41899f459e1812f9f, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  radius: 0.8
-  height: 1.8
+  radius: 0.6
+  height: 2.2
