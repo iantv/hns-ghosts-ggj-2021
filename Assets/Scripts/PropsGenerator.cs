@@ -42,9 +42,6 @@ public class PropsGenerator : MonoBehaviour
             } else if (string.Compare(SpaceName, "CoridorSpace") == 0)
             {
                 SpawnPainting(wall.transform);
-            } else
-            {
-                Debug.Log("SpaceName is " + SpaceName);
             }
         }
     }
