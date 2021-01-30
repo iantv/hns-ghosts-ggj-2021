@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.Serialization;
 
-public class HunterPlayerController : MonoBehaviour
+public class HunterPlayerController : NetworkBehaviour
 {
     [SerializeField] private CharacterController controller;
     [SerializeField] private Transform groundCheck;
@@ -49,6 +50,7 @@ public class HunterPlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (!isLocalPlayer) return;
         Skill_1();
         Shoot();
 

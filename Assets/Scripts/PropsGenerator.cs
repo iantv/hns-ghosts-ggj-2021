@@ -17,6 +17,7 @@ public class PropsGenerator : MonoBehaviour
 
         Walls = new List<GameObject>();
         Transform GeometryItems = transform.Find("Geometry");
+        return;
         foreach (Transform ch in GeometryItems)
         {
             if (ch.gameObject.CompareTag("Wall"))
