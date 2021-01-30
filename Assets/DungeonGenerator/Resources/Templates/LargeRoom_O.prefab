@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 475884}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voxel - (30, 0, 40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 417956}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voxel - (0, 0, 20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 400982}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voxel - (40, 0, 10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 414446}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voxel - (10, 0, 0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 412310}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voxel - (0, 0, 10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 444282}
   - component: {fileID: 11422804}
   - component: {fileID: 11491042}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LargeRoom_O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 417020}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voxel - (40, 0, 30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 3364382}
   - component: {fileID: 6591242}
   - component: {fileID: 2323156}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +370,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 404438}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Geometry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -404,7 +404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 437140}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voxel - (30, 0, 0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 3354196}
   - component: {fileID: 6592418}
   - component: {fileID: 2384002}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,7 +529,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 480948}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voxel - (40, 0, 40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,7 +559,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 412128}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voxel - (0, 0, 30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -590,7 +590,7 @@ GameObject:
   m_Component:
   - component: {fileID: 412352}
   - component: {fileID: 11423568}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Door 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -636,7 +636,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 487086}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voxel - (0, 0, 0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -666,7 +666,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 403304}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voxel - (40, 0, 20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -696,7 +696,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 445616}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voxel - (40, 0, 0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -729,7 +729,7 @@ GameObject:
   - component: {fileID: 3346604}
   - component: {fileID: 6515910}
   - component: {fileID: 2303358}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -822,7 +822,7 @@ GameObject:
   m_Component:
   - component: {fileID: 447082}
   - component: {fileID: 11466540}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -868,7 +868,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 441888}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voxel - (20, 0, 0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -898,7 +898,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 461910}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voxel - (20, 0, 40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -928,7 +928,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 472000}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voxel - (0, 0, 40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -958,7 +958,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 448378}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voxel - (10, 0, 40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -988,7 +988,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 407808}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voxels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1037,7 +1037,7 @@ GameObject:
   - component: {fileID: 3385464}
   - component: {fileID: 6549642}
   - component: {fileID: 2328738}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

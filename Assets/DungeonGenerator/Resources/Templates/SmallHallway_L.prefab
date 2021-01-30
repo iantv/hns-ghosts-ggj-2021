@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 499314}
   - component: {fileID: 11485588}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Door 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 486006}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voxel - (10, 0, 10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 3360654}
   - component: {fileID: 6599774}
   - component: {fileID: 2359034}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 3304360}
   - component: {fileID: 6576292}
   - component: {fileID: 2368730}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 415622}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Geometry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 446078}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voxel - (0, 0, 0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 3398158}
   - component: {fileID: 6517084}
   - component: {fileID: 2388362}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,7 +440,7 @@ GameObject:
   - component: {fileID: 3320844}
   - component: {fileID: 6516428}
   - component: {fileID: 2322534}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -534,7 +534,7 @@ GameObject:
   - component: {fileID: 422670}
   - component: {fileID: 11499640}
   - component: {fileID: 11415834}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SmallHallway_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -608,7 +608,7 @@ GameObject:
   - component: {fileID: 3325130}
   - component: {fileID: 6588158}
   - component: {fileID: 2395338}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -700,7 +700,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 499722}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voxel - (10, 0, 0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -731,7 +731,7 @@ GameObject:
   m_Component:
   - component: {fileID: 405414}
   - component: {fileID: 11449716}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: 3338602}
   - component: {fileID: 6539382}
   - component: {fileID: 2321520}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -872,7 +872,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 445690}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voxels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
