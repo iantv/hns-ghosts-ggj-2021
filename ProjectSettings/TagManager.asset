@@ -6,6 +6,9 @@ TagManager:
   tags:
   - RoomType
   - Wall
+  - Object
+  - HunterPlayer
+  - HidingPlayer
   layers:
   - Default
   - TransparentFX
@@ -14,8 +17,8 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
+  - HidingPlayer
+  - HunterPlayer
   - 
   - 
   - 
@@ -42,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Effects
+    uniqueID: 712347303
     locked: 0
