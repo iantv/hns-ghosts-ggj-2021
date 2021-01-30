@@ -97,7 +97,7 @@ public class DungeonGenerator : MonoBehaviour {
         //locked doors and keys, etc come next. 
 
         generationComplete = true;
-        Debug.Log("DungeonGenerator::Generation completed : " + DDebugTimer.Lap() + "ms");
+//        Debug.Log("DungeonGenerator::Generation completed : " + DDebugTimer.Lap() + "ms");
 
     }
 
