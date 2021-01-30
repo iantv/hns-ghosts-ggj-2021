@@ -389,6 +389,7 @@ GameObject:
   - component: {fileID: 448084}
   - component: {fileID: 11496048}
   - component: {fileID: 11460872}
+  - component: {fileID: -1504772822755325275}
   m_Layer: 6
   m_Name: SmallHallway
   m_TagString: RoomType
@@ -450,6 +451,20 @@ MonoBehaviour:
     m_Center: {x: 5, y: 0, z: 0}
     m_Extent: {x: 10, y: 5, z: 5}
   voxelScale: 10
+--- !u!114 &-1504772822755325275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efeb5cd11fd348498f067719e4e49d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PaintingPrefab: {fileID: 0}
+  TypeName: Coridor
 --- !u!1 &194352
 GameObject:
   m_ObjectHideFlags: 0

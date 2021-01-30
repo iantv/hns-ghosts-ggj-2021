@@ -817,6 +817,7 @@ GameObject:
   - component: {fileID: 422780}
   - component: {fileID: 11487962}
   - component: {fileID: 11463346}
+  - component: {fileID: -5014709734035480588}
   m_Layer: 6
   m_Name: Spawn
   m_TagString: Untagged
@@ -883,6 +884,19 @@ MonoBehaviour:
     m_Center: {x: 10, y: 0, z: 10}
     m_Extent: {x: 15, y: 5, z: 15}
   voxelScale: 10
+--- !u!114 &-5014709734035480588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efeb5cd11fd348498f067719e4e49d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PaintingPrefab: {fileID: 0}
 --- !u!1 &198540
 GameObject:
   m_ObjectHideFlags: 0

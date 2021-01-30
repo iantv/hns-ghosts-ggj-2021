@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 460520}
   - component: {fileID: 11442848}
   - component: {fileID: 11409262}
+  - component: {fileID: -5851960248039678201}
   m_Layer: 6
   m_Name: SmallRoom
   m_TagString: Untagged
@@ -338,6 +339,20 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 5, y: 5, z: 5}
   voxelScale: 10
+--- !u!114 &-5851960248039678201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efeb5cd11fd348498f067719e4e49d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PaintingPrefab: {fileID: 0}
+  TypeName: Coridor
 --- !u!1 &163830
 GameObject:
   m_ObjectHideFlags: 0
