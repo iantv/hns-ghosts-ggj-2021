@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 193840487}
   - component: {fileID: 193840486}
   - component: {fileID: 193840485}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 1611990838}
   - component: {fileID: 1611990837}
   - component: {fileID: 1611990836}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4846,7 +4846,7 @@ ParticleSystemRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1611990835}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -4876,8 +4876,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 712347303
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -4915,7 +4915,7 @@ GameObject:
   - component: {fileID: 1995037729}
   - component: {fileID: 1995037731}
   - component: {fileID: 1995037730}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4990,9 +4990,9 @@ GameObject:
   - component: {fileID: 7606277772446255515}
   - component: {fileID: 7606277772446255513}
   - component: {fileID: 7606277772446255514}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HidingPlayerPrefab
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5046,12 +5046,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerModel: {fileID: 7606277773552643002}
   controller: {fileID: 7606277772446255513}
-  cam: {fileID: 0}
   groundDistance: 0.4
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  particleSystemGameObject: {fileID: 1611990835}
   particleSystem: {fileID: 1611990837}
+  health: 100
   runSpeed: 6
 --- !u!1 &7606277773552643002
 GameObject:
@@ -5065,7 +5066,7 @@ GameObject:
   - component: {fileID: 7606277773552642999}
   - component: {fileID: 7606277773552643000}
   - component: {fileID: 2125744399}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5158,7 +5159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7606277774028192347}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
