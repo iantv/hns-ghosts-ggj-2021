@@ -3,18 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private GameObject playerModel;
     [SerializeField] private CharacterController controller;
     [SerializeField] private Transform cam;
-    [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private ParticleSystem particleSystem;
     
-    public float runSpeed = 6f;
     
+    private Transform _groundCheck;
+    
+    public float runSpeed = 6f;
+
+    private GameObject _newModel;
     private Vector3 _playerVelocity;
     private float _jumpHeight = 3.0f;
     private float _gravityValue = -9.81f;
@@ -25,63 +30,144 @@ public class PlayerMovement : MonoBehaviour
     private float _turnSmoothTime = 0.1f;
     private float _turnSmoothVelocity;
     private  Vector3 _moveDirection = Vector3.zero;
+    private Vector3 _direction;
     
-    private float _nextTime = 0f;
+    private float _skill_1_Time = 0f;
+    private float _skill_2_Time = 0f;
     private float _timeLeft = 10f;
-    
+
+    public void Start()
+    {
+        GetComponent(playerModel);
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void GetComponent(GameObject obj)
+    {
+        controller.height = obj.GetComponent<ObjectScript>().Settings.height;
+        controller.radius = obj.GetComponent<ObjectScript>().Settings.radius;
+        _groundCheck = obj.transform.GetChild(0).GetComponent<Transform>();
+    }
+
     private void Update()
     {
-        _isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundLayer);
+        //Проверяем, можем ли мы прыгнуть
+        _isGrounded = Physics.CheckSphere(_groundCheck.position, groundDistance, groundLayer);
 
         if (_isGrounded && _playerVelocity.y < 0)
         {
             _playerVelocity.y = -2f;
         }
 
+        Skill_1();
+        Skill_2();
+        ReturnToPlayer();
+        
+        if (_isTimerWorking)
+        {
+            _timeLeft -= Time.deltaTime;
+            if (_timeLeft < 0)
+            {
+                _isTimerWorking = false;
+            }
+        }
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+        _direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-        if (direction.sqrMagnitude == 0)
+        //Если мы не двигаемся
+        if (_direction.sqrMagnitude == 0)
         {
             _isParticlePlay = false;
             particleSystem.Stop();
         }
 
-        if (direction.magnitude >= 0.1f)
+        //Если мы двигаемся
+        if (_direction.magnitude >= 0.1f)
         {
             if (!_isTimerWorking && !_isParticlePlay)
             {
                 particleSystem.Play();
                 _isParticlePlay = true;
             }
-
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                if (!(Time.time > _nextTime)) return;
-                particleSystem.Stop();
-                _isTimerWorking = true;
-                _isParticlePlay = false;
-                _nextTime = Time.time + 20f;
-            }
             
-            _timeLeft -= Time.deltaTime;
-            if ( _timeLeft < 0 && _isTimerWorking)
-            {
-                _isTimerWorking = false;
-            }
-            
-            float targetAngel = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-            float angel = Mathf.SmoothDampAngle(transform.eulerAngles.y,
-                targetAngel, ref _turnSmoothVelocity, _turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, angel, 0f);
-        
-            _moveDirection = Quaternion.Euler(0f, targetAngel, 0f) * Vector3.forward;
-            
-            controller.Move(_moveDirection.normalized * runSpeed * Time.deltaTime);
+            Move();
         }
         
+        Jump();
+    }
 
+    private void Move()
+    {
+        float targetAngel = Mathf.Atan2(_direction.x, _direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+        float angel = Mathf.SmoothDampAngle(transform.eulerAngles.y,
+            targetAngel, ref _turnSmoothVelocity, _turnSmoothTime);
+        transform.rotation = Quaternion.Euler(0f, angel, 0f);
+        
+        _moveDirection = Quaternion.Euler(0f, targetAngel, 0f) * Vector3.forward;
+            
+        controller.Move(_moveDirection.normalized * runSpeed * Time.deltaTime);
+    }
+
+    private void Skill_1()
+    {
+        if (!Input.GetKeyDown(KeyCode.LeftShift)) return;
+        if (!(Time.time > _skill_1_Time))
+        {
+            Debug.Log("Skill is not ready!");
+            return;
+        }
+        particleSystem.Stop();
+        _isTimerWorking = true;
+        _isParticlePlay = false;
+        _skill_1_Time = Time.time + 20f;
+    }
+
+    private void Skill_2()
+    {
+        if (!(Time.time > _skill_2_Time))
+        {
+            return;
+        }
+        if (!Input.GetKey(KeyCode.F)) return;
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            Debug.Log("Ray " + hit.transform.name);
+            if (hit.transform.CompareTag("Object"))
+                ChangePlayerModel(hit.transform);
+        }
+    }
+
+    private void ChangePlayerModel(Transform hit)
+    {
+        _skill_2_Time = Time.time + 20f;
+        playerModel.SetActive(false);
+        _newModel = (GameObject) Instantiate(Resources.Load("Models/" + hit.name), 
+            new Vector3(transform.position.x, transform.position.y, transform.position.z), 
+            transform.rotation, transform);
+        _newModel.GetComponent<Rigidbody>().detectCollisions = false;
+        _newModel.GetComponent<Rigidbody>().useGravity = false;
+        
+        GetComponent(_newModel);
+    }
+
+    private void ReturnToPlayer()
+    {
+        if(!Input.GetKey(KeyCode.Q))
+            return;
+        if (playerModel.activeSelf)
+            return;
+        GetComponent(playerModel);
+        playerModel.SetActive(true);
+        Destroy(_newModel);
+    }
+
+    private void Jump()
+    {
         if (Input.GetButtonDown("Jump") && _isGrounded)
         {
             _playerVelocity.y = Mathf.Sqrt(_jumpHeight * -2f * _gravityValue);
