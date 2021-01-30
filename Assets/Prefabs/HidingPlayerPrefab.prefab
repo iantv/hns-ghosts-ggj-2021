@@ -4868,7 +4868,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82309e2b146bda54da9ce09f2967c488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerModel: {fileID: 7606277772446255516}
+  playerModel: {fileID: 7606277773552643002}
+  controller: {fileID: 7606277772446255513}
   cam: {fileID: 0}
   groundDistance: 0.4
   groundLayer:

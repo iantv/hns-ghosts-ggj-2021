@@ -5,7 +5,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class PlayerMovement : MonoBehaviour
+public class HidingPlayerController : MonoBehaviour
 {
     [SerializeField] private GameObject playerModel;
     [SerializeField] private CharacterController controller;
