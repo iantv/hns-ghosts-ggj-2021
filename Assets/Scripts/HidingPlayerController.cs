@@ -10,10 +10,11 @@ public class HidingPlayerController : MonoBehaviour
 {
     [SerializeField] private GameObject playerModel;
     [SerializeField] private CharacterController controller;
-    [SerializeField] private Transform cam;
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private GameObject particleSystemGameObject;
     [SerializeField] private ParticleSystem particleSystem;
+    [SerializeField] private float health = 100f;
     
     
     private Transform _groundCheck;
@@ -27,6 +28,7 @@ public class HidingPlayerController : MonoBehaviour
     private bool _isGrounded;
     private bool _isParticlePlay = false;
     private bool _isTimerWorking = false;
+    private Transform _cam;
     
     private float _turnSmoothTime = 0.1f;
     private float _turnSmoothVelocity;
@@ -37,11 +39,15 @@ public class HidingPlayerController : MonoBehaviour
     private float _skill_2_Time = 0f;
     private float _timeLeft = 10f;
 
+    public void Awake()
+    {
+        this.tag = "HidingPlayer";
+    }
+
     public void Start()
     {
+        _cam = Camera.main.transform;
         GetComponent(playerModel);
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void GetComponent(GameObject obj)
@@ -63,7 +69,7 @@ public class HidingPlayerController : MonoBehaviour
 
         Skill_1();
         Skill_2();
-        ReturnToPlayer();
+        ReturnToPlayerModel();
         
         if (_isTimerWorking)
         {
@@ -102,7 +108,7 @@ public class HidingPlayerController : MonoBehaviour
 
     private void Move()
     {
-        float targetAngel = Mathf.Atan2(_direction.x, _direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+        float targetAngel = Mathf.Atan2(_direction.x, _direction.z) * Mathf.Rad2Deg + _cam.eulerAngles.y;
         float angel = Mathf.SmoothDampAngle(transform.eulerAngles.y,
             targetAngel, ref _turnSmoothVelocity, _turnSmoothTime);
         transform.rotation = Quaternion.Euler(0f, angel, 0f);
@@ -111,10 +117,20 @@ public class HidingPlayerController : MonoBehaviour
             
         controller.Move(_moveDirection.normalized * runSpeed * Time.deltaTime);
     }
+    
+    private void Jump()
+    {
+        if (Input.GetButtonDown("Jump") && _isGrounded)
+        {
+            _playerVelocity.y = Mathf.Sqrt(_jumpHeight * -2f * _gravityValue);
+        }
+        _playerVelocity.y += _gravityValue * Time.deltaTime;
+        controller.Move(_playerVelocity * Time.deltaTime);
+    }
 
     private void Skill_1()
     {
-        if (!Input.GetKeyDown(KeyCode.LeftShift)) return;
+        if (!Input.GetKey(KeyCode.E)) return;
         if (!(Time.time > _skill_1_Time))
         {
             Debug.Log("Skill is not ready!");
@@ -157,7 +173,7 @@ public class HidingPlayerController : MonoBehaviour
         GetComponent(_newModel);
     }
 
-    private void ReturnToPlayer()
+    private void ReturnToPlayerModel()
     {
         if(!Input.GetKey(KeyCode.Q))
             return;
@@ -168,13 +184,22 @@ public class HidingPlayerController : MonoBehaviour
         Destroy(_newModel);
     }
 
-    private void Jump()
+    public void GetDamaged(float damage)
     {
-        if (Input.GetButtonDown("Jump") && _isGrounded)
+        health -= damage;
+        if (health <= 0)
         {
-            _playerVelocity.y = Mathf.Sqrt(_jumpHeight * -2f * _gravityValue);
+            Destroy(this.gameObject);
         }
-        _playerVelocity.y += _gravityValue * Time.deltaTime;
-        controller.Move(_playerVelocity * Time.deltaTime);
+    }
+
+    public void ShowParticleEffect()
+    {
+        particleSystemGameObject.GetComponent<ParticleSystemRenderer>().enabled = true;
+    }
+
+    public void HideParticleEffect()
+    {
+        particleSystemGameObject.GetComponent<ParticleSystemRenderer>().enabled = false;
     }
 }
