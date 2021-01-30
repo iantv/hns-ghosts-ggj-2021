@@ -299,7 +299,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 277714553}
-  m_LocalRotation: {x: 0.17642295, y: -0.00000001893557, z: 0.0000000033939047, w: 0.98431444}
+  m_LocalRotation: {x: 0.17642295, y: 0.000000018935568, z: -0.0000000033939045, w: 0.98431444}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -378,7 +378,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 597213393}
-  m_LocalRotation: {x: 0.15853702, y: 0.000000016988768, z: -0.0000000027278475, w: 0.9873531}
+  m_LocalRotation: {x: 0.15853702, y: -0.000000016988778, z: 0.0000000027278493, w: 0.9873531}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -789,7 +789,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.16211857, y: 0.000000005989875, z: -9.840881e-10, w: 0.9867713}
+  m_LocalRotation: {x: 0.16211857, y: -0.000000005989883, z: 9.840895e-10, w: 0.9867713}
   m_LocalPosition: {x: 0, y: 5.078457, z: -10.1097145}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -896,7 +896,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1201936241}
-  m_LocalRotation: {x: 0.19429792, y: 0.000000016878476, z: -0.0000000033431646, w: 0.9809426}
+  m_LocalRotation: {x: 0.19429792, y: -0.000000016878467, z: 0.0000000033431635, w: 0.9809426}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -961,6 +961,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1293536648}
   - component: {fileID: 1293536647}
+  - component: {fileID: 1293536649}
   m_Layer: 0
   m_Name: DUNGEON GENERATOR
   m_TagString: Untagged
@@ -1011,6 +1012,19 @@ Transform:
   m_Father: {fileID: 63778120}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1293536649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293536646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efeb5cd11fd348498f067719e4e49d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PaintingPrefab: {fileID: 8844627677874049478, guid: 805a57b334cd54d40868aea4228c695b, type: 3}
 --- !u!1 &1472479244
 GameObject:
   m_ObjectHideFlags: 3
