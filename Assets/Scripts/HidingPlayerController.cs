@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -146,7 +147,8 @@ public class HidingPlayerController : MonoBehaviour
     {
         _skill_2_Time = Time.time + 20f;
         playerModel.SetActive(false);
-        _newModel = (GameObject) Instantiate(Resources.Load("Models/" + hit.name), 
+        var name = Regex.Replace(hit.name, @"(?<![a-zA-Z])[^a-zA-Z]|[^a-zA-Z](?![a-zA-Z])", String.Empty);
+        _newModel = (GameObject) Instantiate(Resources.Load("Models/" + name), 
             new Vector3(transform.position.x, transform.position.y, transform.position.z), 
             transform.rotation, transform);
         _newModel.GetComponent<Rigidbody>().detectCollisions = false;
