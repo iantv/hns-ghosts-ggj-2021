@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 2398020}
   m_Layer: 6
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -463,8 +463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efeb5cd11fd348498f067719e4e49d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PaintingPrefab: {fileID: 0}
-  TypeName: Coridor
+  SpaceName: 
 --- !u!1 &194352
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,7 +605,7 @@ GameObject:
   - component: {fileID: 5525504664408785979}
   m_Layer: 6
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
