@@ -10,7 +10,6 @@ public class HunterPlayerController : MonoBehaviour
     [SerializeField] private CharacterController controller;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform startPoint;
-    [SerializeField] private Transform endPoint;
     [SerializeField] private GameObject bullet;
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private float damage = 10f;
@@ -130,16 +129,17 @@ public class HunterPlayerController : MonoBehaviour
 
         var ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         
-        _ray =
-            Instantiate(bullet, startPoint.position, Quaternion.identity);
-        
-        StartCoroutine(Destroy());
-        LineRenderer lineRenderer = _ray.GetComponent<LineRenderer>();
-        lineRenderer.SetPosition (0, startPoint.transform.position);
-        lineRenderer.SetPosition (1, endPoint.transform.position);
 
         if (Physics.Raycast(ray, out var hit, 100f))
         {
+            _ray =
+                Instantiate(bullet, startPoint.position, Quaternion.identity);
+        
+            StartCoroutine(Destroy());
+            LineRenderer lineRenderer = _ray.GetComponent<LineRenderer>();
+            lineRenderer.SetPosition (0, startPoint.transform.position);
+            lineRenderer.SetPosition (1, hit.point);
+            
             if(hit.transform.GetComponent<HidingPlayerController>() != null)
                 hit.transform.GetComponent<HidingPlayerController>().GetDamaged(damage);
         }
