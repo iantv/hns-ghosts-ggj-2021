@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d83984336eb092e41899f459e1812f9f, type: 3}
-  m_Name: Sink
+  m_Name: Ghost
   m_EditorClassIdentifier: 
-  radius: 0.1
-  height: 0.3
-  centerY: 0.3
+  radius: 0.06
+  height: 0.2
+  centerY: 0.1

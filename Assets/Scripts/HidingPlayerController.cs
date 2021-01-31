@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Cinemachine;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -10,6 +11,7 @@ public class HidingPlayerController : MonoBehaviour
 {
     [SerializeField] private GameObject playerModel;
     [SerializeField] private CharacterController controller;
+    [SerializeField] private Animator animator;
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private GameObject particleSystemGameObject;
@@ -20,6 +22,7 @@ public class HidingPlayerController : MonoBehaviour
     
     public float runSpeed = 6f;
 
+    private CinemachineFreeLook _cinemachin;
     private GameObject _newModel;
     private Vector3 _playerVelocity;
     private float _jumpHeight = 3.0f;
@@ -43,6 +46,7 @@ public class HidingPlayerController : MonoBehaviour
     {
         this.tag = "HidingPlayer";
         _health = settings.healt;
+        _cinemachin = GameObject.FindWithTag("Cinemachin").GetComponent<CinemachineFreeLook>();
     }
 
     public void Start()
@@ -56,7 +60,10 @@ public class HidingPlayerController : MonoBehaviour
     {
         controller.height = obj.GetComponent<ObjectScript>().Settings.height;
         controller.radius = obj.GetComponent<ObjectScript>().Settings.radius;
+        controller.center = new Vector3(0f,obj.GetComponent<ObjectScript>().Settings.centerY,0f);
         _groundCheck = obj.transform.GetChild(0).GetComponent<Transform>();
+        _cinemachin.Follow = obj.transform;
+        _cinemachin.LookAt = obj.transform;
     }
 
     private void Update()
@@ -89,6 +96,7 @@ public class HidingPlayerController : MonoBehaviour
         //Если мы не двигаемся
         if (_direction.sqrMagnitude == 0)
         {
+            animator.SetInteger("AnimState",0);
             _isParticlePlay = false;
             particleSystem.Stop();
         }
@@ -96,6 +104,7 @@ public class HidingPlayerController : MonoBehaviour
         //Если мы двигаемся
         if (_direction.magnitude >= 0.1f)
         {
+            animator.SetInteger("AnimState",2);
             if (!_isTimerWorking && !_isParticlePlay)
             {
                 particleSystem.Play();
@@ -155,19 +164,23 @@ public class HidingPlayerController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.Log("Ray " + hit.transform.name);
-            if (hit.transform.CompareTag("Object"))
-                ChangePlayerModel(hit.transform);
+           // Debug.Log("Ray " + hit.transform.name);
+           if (hit.transform.CompareTag("Object"))
+           {
+               _skill2Time = Time.time + settings.hidingSkill2Time;
+               StartCoroutine(ChangePlayerModel(hit.transform));
+           }
         }
     }
 
-    private void ChangePlayerModel(Transform hit)
+    IEnumerator ChangePlayerModel(Transform hit)
     {
-        _skill2Time = Time.time + settings.hidingSkill2Time;
+        animator.SetTrigger("In");
+        yield return new WaitForSeconds(0.5f);
         playerModel.SetActive(false);
         var name = Regex.Replace(hit.name, @"(?<![a-zA-Z])[^a-zA-Z]|[^a-zA-Z](?![a-zA-Z])", String.Empty);
-        _newModel = (GameObject) Instantiate(Resources.Load("Models/" + name), 
-            new Vector3(transform.position.x, transform.position.y, transform.position.z), 
+        _newModel = (GameObject) Instantiate(Resources.Load("Models/" + name),new Vector3(transform.position.x, 
+            transform.position.y +2f, transform.position.z),
             transform.rotation, transform);
         GetComponent(_newModel);
     }
@@ -181,6 +194,8 @@ public class HidingPlayerController : MonoBehaviour
         GetComponent(playerModel);
         playerModel.SetActive(true);
         Destroy(_newModel);
+        
+        animator.SetTrigger("Out");
     }
 
     public void GetDamaged(float damage)

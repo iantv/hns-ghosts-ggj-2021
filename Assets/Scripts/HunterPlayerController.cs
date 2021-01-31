@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -23,6 +24,9 @@ public class HunterPlayerController : MonoBehaviour
     private float _jumpHeight = 3.0f;
     private float _gravityValue = -9.81f;
     private bool _isGrounded;
+    
+    private bool _isShooting = false;
+    private bool _isUp = false;
 
     private float _turnSmoothTime = 0.1f;
     private float _turnSmoothVelocity;
@@ -32,6 +36,7 @@ public class HunterPlayerController : MonoBehaviour
 
     private GameObject[] _hidingPlayers;
     private GameObject _ray;
+    private LineRenderer _lineRenderer;
     
     
     private float _skill_1_Time = 0f;
@@ -51,9 +56,18 @@ public class HunterPlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (_isShooting)
+        {
+            if(Input.GetButtonUp("Fire1"))
+            {
+                _isUp = true;
+                StartCoroutine(Destroy());
+            }
+        }
+        
         Skill_1();
         Shoot();
-
+        
         //Проверяем, можем ли мы прыгнуть
         _isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundLayer);
 
@@ -66,7 +80,7 @@ public class HunterPlayerController : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
         _direction = new Vector3(horizontal, 0f, vertical).normalized;
         
-        if (_direction.sqrMagnitude == 0)
+        if (_direction.sqrMagnitude == 0 && !_isShooting)
         {
             _anim.SetInteger("AnimState",0);
         }
@@ -74,7 +88,8 @@ public class HunterPlayerController : MonoBehaviour
         //Если мы двигаемся
         if (_direction.magnitude >= 0.1f)
         {
-            _anim.SetInteger("AnimState",2);
+            if(!_isShooting)
+                _anim.SetInteger("AnimState",2);
             Move();
         }
         
@@ -134,38 +149,44 @@ public class HunterPlayerController : MonoBehaviour
 
     private void Shoot()
     {
-        if (!(Time.time >= _shootTimer)) return;
-        if (!Input.GetButtonDown("Fire1")) return;
-
+        if(_isUp)
+            return;
+        if (!Input.GetButton("Fire1")) return;
         var ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-        
+
         if (Physics.Raycast(ray, out var hit, 100f))
         {
-            transform.LookAt(hit.point);
             _anim.SetTrigger("Attack");
             StartCoroutine(WhaitForShoot(hit));
-
         }
-        _shootTimer = Time.time + settings.shootRate;
     }
 
     IEnumerator WhaitForShoot(RaycastHit hit)
     {
         yield return new WaitForSeconds(0.35f);
-        _ray =
-            Instantiate(bullet, startPoint.position, Quaternion.identity);
+        if (!_isShooting)
+        {
+            //_ray =
+            //    Instantiate(bullet, startPoint.position, Quaternion.identity, startPoint);
+            //startPoint.transform.rotation = quaternion.Euler(90f,0f,0f);
+            bullet.SetActive(true);
+            _isShooting = true;
+        }
         
-        StartCoroutine(Destroy());
-        LineRenderer lineRenderer = _ray.GetComponent<LineRenderer>();
-        lineRenderer.SetPosition (0, startPoint.transform.position);
-        lineRenderer.SetPosition (1, hit.point);
-            
+        if (!(Time.time >= _shootTimer)) yield break;
         if(hit.transform.GetComponent<HidingPlayerController>() != null)
             hit.transform.GetComponent<HidingPlayerController>().GetDamaged(damage);
+        _shootTimer = Time.time + settings.shootRate;
     }
+    
     private IEnumerator Destroy()
     {
-        yield return new WaitForSeconds(0.3f);
-        Destroy(_ray);
+       _anim.SetInteger("AnimState",3);
+       yield return new WaitForSeconds(0.3f);
+        //Destroy(_ray);
+        bullet.SetActive(false);
+       yield return new WaitForSeconds(1f);
+       _isShooting = false;
+       _isUp = false;
     }
 }
