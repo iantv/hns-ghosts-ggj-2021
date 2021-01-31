@@ -2,12 +2,20 @@ using System;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class HnsNetworkManager : NetworkManager
 {
     [SerializeField] private CinemachineFreeLook cinemachineFreeLook;
     [SerializeField] private Transform spawnPosition;
     [SerializeField] private CanvasGroup selectCharacterPanel;
+    private InputField inputIpAddress;
+
+    private void Start()
+    {
+        inputIpAddress = GameObject.Find("InputIpAddress").GetComponent<InputField>();
+        inputIpAddress.text = networkAddress;
+    }
 
     public void ButtonStartServer()
     {
@@ -23,6 +31,7 @@ public class HnsNetworkManager : NetworkManager
 
     public void ButtonStartClient()
     {
+        networkAddress = inputIpAddress.text;
         StartClient();
     }
 
