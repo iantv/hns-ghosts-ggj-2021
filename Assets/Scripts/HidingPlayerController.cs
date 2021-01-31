@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Serialization;
 
-public class HidingPlayerController : NetworkBehaviour
+public class HidingPlayerController : MonoBehaviour // NetworkBehaviour
 {
     [SerializeField] private GameObject playerModel;
     [SerializeField] private CharacterController controller;
@@ -69,7 +69,7 @@ public class HidingPlayerController : NetworkBehaviour
 
     private void Update()
     {
-        if (!isLocalPlayer) return;
+        // if (!isLocalPlayer) return;
         
         //Проверяем, можем ли мы прыгнуть
         _isGrounded = Physics.CheckSphere(_groundCheck.position, groundDistance, groundLayer);
