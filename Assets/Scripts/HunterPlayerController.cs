@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Serialization;
 
-public class HunterPlayerController : MonoBehaviour // NetworkBehaviour
+public class HunterPlayerController : NetworkBehaviour
 {
     [SerializeField] private CharacterController controller;
     [SerializeField] private Animator _anim;
@@ -57,7 +57,7 @@ public class HunterPlayerController : MonoBehaviour // NetworkBehaviour
 
     private void Update()
     {
-        // if (!isLocalPlayer) return;
+        if (!isLocalPlayer) return;
 
         if (_isShooting)
         {
