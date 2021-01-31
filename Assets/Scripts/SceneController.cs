@@ -7,9 +7,33 @@ using UnityEngine;
 public class SceneController : MonoBehaviour
 {
     [SerializeField] private CinemachineFreeLook cinemachineFreeLook;
+    [SerializeField] private Transform spawnPosition;
+    [SerializeField] private CanvasGroup selectCharacterPanel;
+    
     private string _playerTag = "HunterPlayer";
+    
+    public void SpawnHunter()
+    {
+        _playerTag = "HunterPlayer";
+        Instantiate(Resources.Load("HunterPlayerPrefab"), spawnPosition);
+        selectCharacterPanel.alpha = 0;
+        selectCharacterPanel.interactable = false;
+        selectCharacterPanel.blocksRaycasts = false;
+        LookAtPlayer();
+    }
 
-    private void Awake()
+    public void SpawnHiding()
+    {
+        _playerTag = "HidingPlayer";
+        Instantiate(Resources.Load("HidingPlayerPrefab"), spawnPosition);
+        selectCharacterPanel.alpha = 0;
+        selectCharacterPanel.interactable = false;
+        selectCharacterPanel.blocksRaycasts = false;
+        LookAtPlayer();
+    }
+
+
+    private void LookAtPlayer()
     {
         GameObject player = GameObject.FindWithTag(_playerTag);
         cinemachineFreeLook.Follow = player.transform;
@@ -18,5 +42,4 @@ public class SceneController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-
 }
