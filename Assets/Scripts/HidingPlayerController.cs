@@ -14,8 +14,7 @@ public class HidingPlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private GameObject particleSystemGameObject;
     [SerializeField] private ParticleSystem particleSystem;
-    [SerializeField] private float health = 100f;
-    
+    [SerializeField] private MainGameSettings settings;
     
     private Transform _groundCheck;
     
@@ -29,23 +28,26 @@ public class HidingPlayerController : MonoBehaviour
     private bool _isParticlePlay = false;
     private bool _isTimerWorking = false;
     private Transform _cam;
+    private float _health;
     
     private float _turnSmoothTime = 0.1f;
     private float _turnSmoothVelocity;
     private  Vector3 _moveDirection = Vector3.zero;
     private Vector3 _direction;
     
-    private float _skill_1_Time = 0f;
-    private float _skill_2_Time = 0f;
+    private float _skill1Time = 0f;
+    private float _skill2Time = 0f;
     private float _timeLeft = 10f;
 
     public void Awake()
     {
         this.tag = "HidingPlayer";
+        _health = settings.healt;
     }
 
     public void Start()
     {
+        _timeLeft = settings.hidingSkill1Duration;
         _cam = Camera.main.transform;
         GetComponent(playerModel);
     }
@@ -105,7 +107,7 @@ public class HidingPlayerController : MonoBehaviour
         
         Jump();
     }
-
+    
     private void Move()
     {
         float targetAngel = Mathf.Atan2(_direction.x, _direction.z) * Mathf.Rad2Deg + _cam.eulerAngles.y;
@@ -131,7 +133,7 @@ public class HidingPlayerController : MonoBehaviour
     private void Skill_1()
     {
         if (!Input.GetKey(KeyCode.E)) return;
-        if (!(Time.time > _skill_1_Time))
+        if (!(Time.time > _skill1Time))
         {
             Debug.Log("Skill is not ready!");
             return;
@@ -139,12 +141,12 @@ public class HidingPlayerController : MonoBehaviour
         particleSystem.Stop();
         _isTimerWorking = true;
         _isParticlePlay = false;
-        _skill_1_Time = Time.time + 20f;
+        _skill1Time = Time.time + settings.hidingSkill1Time;
     }
 
     private void Skill_2()
     {
-        if (!(Time.time > _skill_2_Time))
+        if (!(Time.time > _skill2Time))
         {
             return;
         }
@@ -161,7 +163,7 @@ public class HidingPlayerController : MonoBehaviour
 
     private void ChangePlayerModel(Transform hit)
     {
-        _skill_2_Time = Time.time + 20f;
+        _skill2Time = Time.time + settings.hidingSkill2Time;
         playerModel.SetActive(false);
         var name = Regex.Replace(hit.name, @"(?<![a-zA-Z])[^a-zA-Z]|[^a-zA-Z](?![a-zA-Z])", String.Empty);
         _newModel = (GameObject) Instantiate(Resources.Load("Models/" + name), 
@@ -183,9 +185,9 @@ public class HidingPlayerController : MonoBehaviour
 
     public void GetDamaged(float damage)
     {
-        health -= damage;
-        Debug.Log(health);
-        if (health <= 0)
+        _health -= damage;
+        Debug.Log(_health);
+        if (_health <= 0)
         {
             Destroy(this.gameObject);
         }

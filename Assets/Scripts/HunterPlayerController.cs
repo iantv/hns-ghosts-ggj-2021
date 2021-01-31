@@ -15,6 +15,7 @@ public class HunterPlayerController : MonoBehaviour
     [SerializeField] private float damage = 10f;
     [SerializeField] private LayerMask groundLayer;
 
+    [SerializeField] private MainGameSettings settings;
 
     public float runSpeed = 6f;
     
@@ -79,16 +80,20 @@ public class HunterPlayerController : MonoBehaviour
         
         Jump();
     }
-
-    private void Move()
+    
+    private void LateUpdate()
     {
         float targetAngel = Mathf.Atan2(_direction.x, _direction.z) * Mathf.Rad2Deg + _cam.eulerAngles.y;
         float angel = Mathf.SmoothDampAngle(transform.eulerAngles.y,
             targetAngel, ref _turnSmoothVelocity, _turnSmoothTime);
         transform.rotation = Quaternion.Euler(0f, angel, 0f);
-        
+    }
+
+
+    private void Move()
+    {
+        float targetAngel = Mathf.Atan2(_direction.x, _direction.z) * Mathf.Rad2Deg + _cam.eulerAngles.y;
         _moveDirection = Quaternion.Euler(0f, targetAngel, 0f) * Vector3.forward;
-            
         controller.Move(_moveDirection.normalized * runSpeed * Time.deltaTime);
     }
     
@@ -96,7 +101,7 @@ public class HunterPlayerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && _isGrounded)
         {
-            _playerVelocity.y = Mathf.Sqrt(_jumpHeight * -2f * _gravityValue);
+            _playerVelocity.y = Mathf.Sqrt(_jumpHeight * -2.5f * _gravityValue);
         }
         _playerVelocity.y += _gravityValue * Time.deltaTime;
         controller.Move(_playerVelocity * Time.deltaTime);
@@ -115,12 +120,12 @@ public class HunterPlayerController : MonoBehaviour
            pl.GetComponent<HidingPlayerController>().ShowParticleEffect();
            StartCoroutine(HideParticleEffect());
         }
-        _skill_1_Time = Time.time + 20f;
+        _skill_1_Time = Time.time + settings.hunterSkill1Time;
     }
 
     IEnumerator HideParticleEffect()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(settings.hunterSkill1Duration);
         foreach (var pl in _hidingPlayers)
         {
             pl.GetComponent<HidingPlayerController>().HideParticleEffect();
@@ -136,11 +141,12 @@ public class HunterPlayerController : MonoBehaviour
         
         if (Physics.Raycast(ray, out var hit, 100f))
         {
+            transform.LookAt(hit.point);
             _anim.SetTrigger("Attack");
             StartCoroutine(WhaitForShoot(hit));
 
         }
-        _shootTimer = Time.time + 0.5f;
+        _shootTimer = Time.time + settings.shootRate;
     }
 
     IEnumerator WhaitForShoot(RaycastHit hit)

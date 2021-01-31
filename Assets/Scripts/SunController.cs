@@ -6,14 +6,22 @@ using UnityEngine.UI;
 
 public class SunController : MonoBehaviour
 {
-    [SerializeField] private float time;
     [SerializeField] private TimeSpan currentTime;
     [SerializeField] private Transform sunTransform;
     [SerializeField] private Text timerText;
-    [SerializeField] public int speed;
+    [SerializeField] private MainGameSettings settings;
 
+    private int _speed;
+    private float _time;
     private bool _isSunrise = false;
     private float _timer = 0f;
+
+    public void Start()
+    {
+        _time = settings.currentTimeOfDay;
+        _speed = settings.dayNightCycleSpeed;
+    }
+
     private void Update()
     {
         ChangeTime();
@@ -24,12 +32,12 @@ public class SunController : MonoBehaviour
         if(_isSunrise)
             return;
         
-        time += Time.deltaTime * speed;
-        if (time > 864000)
+        _time += Time.deltaTime * _speed;
+        if (_time > 864000)
         {
-            time = 0;
+            _time = 0;
         }
-        currentTime = TimeSpan.FromSeconds(time);
+        currentTime = TimeSpan.FromSeconds(_time);
         if (currentTime.Hours == 6)
         {
             _timer = 60 - currentTime.Minutes;
@@ -41,6 +49,6 @@ public class SunController : MonoBehaviour
             }
             timerText.text = "До рассвета : " + _timer + " минут!";
         }
-        sunTransform.rotation = Quaternion.Euler(new Vector3((time - 21600)/86400*360,0f,0f));
+        sunTransform.rotation = Quaternion.Euler(new Vector3((_time - 21600)/86400*360,0f,0f));
     }
 }

@@ -16,7 +16,7 @@ public class SceneController : MonoBehaviour
     public void SpawnHunter()
     {
         _playerTag = "HunterPlayer";
-        Instantiate(Resources.Load("HunterPlayerPrefab"), spawnPosition);
+        Instantiate(Resources.Load("HunterPlayerPrefab"), spawnPosition.position, Quaternion.identity);
         selectCharacterPanel.alpha = 0;
         selectCharacterPanel.interactable = false;
         selectCharacterPanel.blocksRaycasts = false;
