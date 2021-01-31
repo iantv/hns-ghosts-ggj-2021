@@ -1234,7 +1234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efeb5cd11fd348498f067719e4e49d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpaceName: RoomSpace
+  SpaceName: LivingRoomSpace
 --- !u!1 &156450
 GameObject:
   m_ObjectHideFlags: 0
