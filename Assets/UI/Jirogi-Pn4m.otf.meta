@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 3fbf806e06d144f4d80a2d5c89039f4c
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Jirogi
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 4d7da5f91386ad844bc662624bada51b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

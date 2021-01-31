@@ -16,6 +16,9 @@ public class HunterPlayerController : MonoBehaviour
     [SerializeField] private float damage = 10f;
     [SerializeField] private LayerMask groundLayer;
 
+    [SerializeField] private CanvasGroup img1;
+    [SerializeField] private CanvasGroup img2;
+
     [SerializeField] private MainGameSettings settings;
 
     public float runSpeed = 6f;
@@ -129,6 +132,8 @@ public class HunterPlayerController : MonoBehaviour
         if (!(Time.time > _skill_1_Time))
             return;
 
+        img1.alpha = 0;
+        img2.alpha = 1;
         _hidingPlayers = GameObject.FindGameObjectsWithTag("HidingPlayer");
         foreach (var pl in _hidingPlayers)
         {
@@ -141,6 +146,8 @@ public class HunterPlayerController : MonoBehaviour
     IEnumerator HideParticleEffect()
     {
         yield return new WaitForSeconds(settings.hunterSkill1Duration);
+        img1.alpha = 1;
+        img2.alpha = 0;
         foreach (var pl in _hidingPlayers)
         {
             pl.GetComponent<HidingPlayerController>().HideParticleEffect();
