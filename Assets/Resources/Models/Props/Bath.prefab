@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 7227376059849649681}
   - component: {fileID: 6141155230008114000}
   m_Layer: 0
-  m_Name: bath1:pCube1
-  m_TagString: Untagged
+  m_Name: Bath
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

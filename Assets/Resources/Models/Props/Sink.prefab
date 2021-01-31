@@ -219,8 +219,8 @@ GameObject:
   - component: {fileID: 579822833957365066}
   - component: {fileID: 7336796600278961013}
   m_Layer: 0
-  m_Name: group3
-  m_TagString: Untagged
+  m_Name: Sink
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
