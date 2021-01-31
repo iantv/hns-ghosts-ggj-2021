@@ -9,6 +9,8 @@ TagManager:
   - Object
   - HunterPlayer
   - HidingPlayer
+  - Floor
+  - Cinemachin
   layers:
   - Default
   - TransparentFX
