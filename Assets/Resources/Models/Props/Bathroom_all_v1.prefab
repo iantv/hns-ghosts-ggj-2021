@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5912343805478280205}
   m_Layer: 0
   m_Name: Towel
-  m_TagString: Object
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 2481995918697717786}
   m_Layer: 0
   m_Name: ToiletPaper
-  m_TagString: Object
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -675,6 +675,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f77953a7e6f128c4db8a064ca5c6dcef, type: 2}
+    - target: {fileID: -3167299574701864104, guid: 763459c679eda0441b0476b34be96bb5, type: 3}
+      propertyPath: m_Name
+      value: Carpet
+      objectReference: {fileID: 0}
+    - target: {fileID: -3167299574701864104, guid: 763459c679eda0441b0476b34be96bb5, type: 3}
+      propertyPath: m_TagString
+      value: Object
+      objectReference: {fileID: 0}
     - target: {fileID: -1117398130838932497, guid: 763459c679eda0441b0476b34be96bb5, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -716,6 +724,10 @@ PrefabInstance:
       value: Carpets
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 763459c679eda0441b0476b34be96bb5, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 7887587906704532359, guid: 763459c679eda0441b0476b34be96bb5, type: 3}
       propertyPath: m_TagString
       value: Object
       objectReference: {fileID: 0}
@@ -806,6 +818,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d22552bec07846743959d3c1a3e93dc3, type: 3}
       propertyPath: m_Name
       value: ToiletPaperMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d22552bec07846743959d3c1a3e93dc3, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d22552bec07846743959d3c1a3e93dc3, type: 3}
@@ -956,6 +972,10 @@ PrefabInstance:
     - target: {fileID: 7735618053192482537, guid: 84d3212fd24757c488fac4ec45506b1a, type: 3}
       propertyPath: m_Name
       value: TowelMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 7735618053192482537, guid: 84d3212fd24757c488fac4ec45506b1a, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84d3212fd24757c488fac4ec45506b1a, type: 3}
