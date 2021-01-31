@@ -1073,6 +1073,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  settings: {fileID: 11400000, guid: 90e07367444412b41b14a026bdfdd08d, type: 2}
   runSpeed: 6
 --- !u!1 &4472754511427366881
 GameObject:

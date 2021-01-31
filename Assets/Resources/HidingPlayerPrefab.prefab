@@ -5053,6 +5053,7 @@ MonoBehaviour:
   particleSystemGameObject: {fileID: 1611990835}
   particleSystem: {fileID: 1611990837}
   health: 100
+  settings: {fileID: 11400000, guid: 90e07367444412b41b14a026bdfdd08d, type: 2}
   runSpeed: 6
 --- !u!1 &7606277773552643002
 GameObject:
