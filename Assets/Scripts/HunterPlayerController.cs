@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 public class HunterPlayerController : MonoBehaviour
 {
     [SerializeField] private CharacterController controller;
+    [SerializeField] private Animator _anim;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform startPoint;
     [SerializeField] private GameObject bullet;
@@ -64,10 +65,15 @@ public class HunterPlayerController : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
         _direction = new Vector3(horizontal, 0f, vertical).normalized;
         
+        if (_direction.sqrMagnitude == 0)
+        {
+            _anim.SetInteger("AnimState",0);
+        }
 
         //Если мы двигаемся
         if (_direction.magnitude >= 0.1f)
         {
+            _anim.SetInteger("AnimState",2);
             Move();
         }
         
@@ -128,26 +134,32 @@ public class HunterPlayerController : MonoBehaviour
 
         var ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         
-
         if (Physics.Raycast(ray, out var hit, 100f))
         {
-            _ray =
-                Instantiate(bullet, startPoint.position, Quaternion.identity);
-        
-            StartCoroutine(Destroy());
-            LineRenderer lineRenderer = _ray.GetComponent<LineRenderer>();
-            lineRenderer.SetPosition (0, startPoint.transform.position);
-            lineRenderer.SetPosition (1, hit.point);
-            
-            if(hit.transform.GetComponent<HidingPlayerController>() != null)
-                hit.transform.GetComponent<HidingPlayerController>().GetDamaged(damage);
+            _anim.SetTrigger("Attack");
+            StartCoroutine(WhaitForShoot(hit));
+
         }
         _shootTimer = Time.time + 0.5f;
     }
 
+    IEnumerator WhaitForShoot(RaycastHit hit)
+    {
+        yield return new WaitForSeconds(0.35f);
+        _ray =
+            Instantiate(bullet, startPoint.position, Quaternion.identity);
+        
+        StartCoroutine(Destroy());
+        LineRenderer lineRenderer = _ray.GetComponent<LineRenderer>();
+        lineRenderer.SetPosition (0, startPoint.transform.position);
+        lineRenderer.SetPosition (1, hit.point);
+            
+        if(hit.transform.GetComponent<HidingPlayerController>() != null)
+            hit.transform.GetComponent<HidingPlayerController>().GetDamaged(damage);
+    }
     private IEnumerator Destroy()
     {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.3f);
         Destroy(_ray);
     }
 }
