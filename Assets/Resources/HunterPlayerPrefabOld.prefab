@@ -30,36 +30,6 @@ Transform:
   m_Father: {fileID: 6126578399485920289}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1237439884
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1237439885}
-  m_Layer: 8
-  m_Name: EndPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1237439885
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1237439884}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.3, z: 20}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6126578399485920289}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2008026428
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,7 +247,7 @@ GameObject:
   - component: {fileID: 6126578399485920291}
   - component: {fileID: 7606277774157681863}
   m_Layer: 8
-  m_Name: 'HunterPlayerPrefab '
+  m_Name: HunterPlayerPrefab
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -299,7 +269,6 @@ Transform:
   - {fileID: 4362606836493748434}
   - {fileID: 2008026429}
   - {fileID: 797165501}
-  - {fileID: 1237439885}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -336,7 +305,6 @@ MonoBehaviour:
   controller: {fileID: 6126578399485920291}
   groundCheck: {fileID: 6126578400385398753}
   startPoint: {fileID: 797165501}
-  endPoint: {fileID: 1237439885}
   bullet: {fileID: 1962479828434100, guid: b478a3c4c8ae3bb42a5785ab95bcf6d3, type: 3}
   groundDistance: 0.4
   damage: 10
