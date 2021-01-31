@@ -5,9 +5,10 @@ using System.Text.RegularExpressions;
 using Cinemachine;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.Serialization;
 
-public class HidingPlayerController : MonoBehaviour
+public class HidingPlayerController : NetworkBehaviour
 {
     [SerializeField] private GameObject playerModel;
     [SerializeField] private CharacterController controller;
@@ -68,6 +69,8 @@ public class HidingPlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (!isLocalPlayer) return;
+        
         //Проверяем, можем ли мы прыгнуть
         _isGrounded = Physics.CheckSphere(_groundCheck.position, groundDistance, groundLayer);
 
