@@ -35,26 +35,32 @@ public class HnsNetworkManager : NetworkManager
             // ClientScene.AddPlayer(0);
         // }
     }
-
+    
     private bool cameraInitialised = false;
     private string playerTag = "";
+
+    private GameObject FindLocalPlayerByTag(string tag)
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag(tag);
+
+        foreach (var p in players)
+        {
+            if (p.GetComponent<NetworkBehaviour>().isLocalPlayer)
+            {
+                return p;
+            }
+        }
+
+        return null;
+    }
 
     private void Update()
     {
         if (!cameraInitialised && playerTag != "")
         {
-            GameObject[] players = GameObject.FindGameObjectsWithTag("HidingPlayer");
-            GameObject player = null;
+            GameObject player = FindLocalPlayerByTag("HidingPlayer");
+            player = player == null ? FindLocalPlayerByTag("HunterPlayer") : player;
 
-            foreach (var p in players)
-            {
-                if (p.GetComponent<HidingPlayerController>().isLocalPlayer)
-                {
-                    player = p;
-                    break;
-                }
-            }
-            
             if (player != null)
             {
                 selectCharacterPanel.alpha = 0;
@@ -79,7 +85,11 @@ public class HnsNetworkManager : NetworkManager
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
-        GameObject player = (GameObject)Instantiate(Resources.Load("HidingPlayerPrefab"), spawnPosition);
+        System.Random rnd = new System.Random();
+        bool isHunter = rnd.Next(2) == 0;
+        string prefabName = isHunter ? "HunterPlayerPrefab" : "HidingPlayerPrefab";
+        string tag = isHunter ? "HunterPlayer" : "HidingPlayer";
+        GameObject player = (GameObject)Instantiate(Resources.Load(prefabName), spawnPosition);
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
     }
 
