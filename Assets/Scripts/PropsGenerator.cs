@@ -55,6 +55,18 @@ public class PropsGenerator : MonoBehaviour
 
             InteriorInteriorStyle("Materials/BathroomWall");
         }
+        else if (string.Compare(SpaceName, "LivingRoomSpace") == 0)
+        {
+            //Floor.GetComponent<MeshRenderer>().material = Resources.Load("Materials/BathroomFloor") as Material;
+
+            GameObject bathItem = Prefabs[SpaceName][0];
+            var b = Instantiate(Prefabs[SpaceName][0], Floor.transform.position, Floor.transform.rotation, gameObject.transform);
+            b.transform.Translate(Floor.transform.up * 0.5f, Space.World);
+            //b.transform.Translate(Floor.transform.forward * 4, Space.World);
+            //b.transform.Rotate(new Vector3(0f, -90f, 0f));
+
+            //InteriorInteriorStyle("Materials/BathroomWall");
+        }
         else
         {
             Debug.Log("SpaceName is " + SpaceName);
@@ -75,7 +87,10 @@ public class PropsGenerator : MonoBehaviour
         List<GameObject> EndRoomPrefabs = new List<GameObject>();
         EndRoomPrefabs.Add(Resources.Load("Models/Props/Bathroom_all_v1") as GameObject);
         Prefabs.Add("EndRoomSpace", EndRoomPrefabs);
-        Prefabs["RoomSpace"].ForEach(Debug.Log);
+
+        List<GameObject> LivingRoomPrefabs = new List<GameObject>();
+        LivingRoomPrefabs.Add(Resources.Load("Models/Props/LivingRoom_all_v1") as GameObject);
+        Prefabs.Add("LivingRoomSpace", LivingRoomPrefabs);
     }
 
     void SpawnPainting()
