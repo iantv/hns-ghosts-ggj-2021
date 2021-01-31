@@ -117,6 +117,14 @@ public class HidingPlayerController : MonoBehaviour
         Jump();
     }
     
+    private void LateUpdate()
+    {
+        float targetAngel = Mathf.Atan2(_direction.x, _direction.z) * Mathf.Rad2Deg + _cam.eulerAngles.y;
+        float angel = Mathf.SmoothDampAngle(transform.eulerAngles.y,
+            targetAngel, ref _turnSmoothVelocity, _turnSmoothTime);
+        transform.rotation = Quaternion.Euler(0f, angel, 0f);
+    }
+    
     private void Move()
     {
         float targetAngel = Mathf.Atan2(_direction.x, _direction.z) * Mathf.Rad2Deg + _cam.eulerAngles.y;
@@ -163,8 +171,8 @@ public class HidingPlayerController : MonoBehaviour
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
-        {
-           // Debug.Log("Ray " + hit.transform.name);
+        { 
+            Debug.Log("Ray " + hit.transform.name);
            if (hit.transform.CompareTag("Object"))
            {
                _skill2Time = Time.time + settings.hidingSkill2Time;
@@ -180,7 +188,7 @@ public class HidingPlayerController : MonoBehaviour
         playerModel.SetActive(false);
         var name = Regex.Replace(hit.name, @"(?<![a-zA-Z])[^a-zA-Z]|[^a-zA-Z](?![a-zA-Z])", String.Empty);
         _newModel = (GameObject) Instantiate(Resources.Load("Models/" + name),new Vector3(transform.position.x, 
-            transform.position.y +2f, transform.position.z),
+            transform.position.y, transform.position.z),
             transform.rotation, transform);
         GetComponent(_newModel);
     }

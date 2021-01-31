@@ -43,6 +43,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dinner table
       objectReference: {fileID: 0}
+    - target: {fileID: 1350412806967928319, guid: 1c767b0e6fcaec240875b35a84c6a2e1, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 1870807934616108869, guid: 1c767b0e6fcaec240875b35a84c6a2e1, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -86,6 +90,10 @@ PrefabInstance:
     - target: {fileID: 1870807934616108869, guid: 1c767b0e6fcaec240875b35a84c6a2e1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012021020881149222, guid: 1c767b0e6fcaec240875b35a84c6a2e1, type: 3}
+      propertyPath: m_TagString
+      value: Object
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c767b0e6fcaec240875b35a84c6a2e1, type: 3}
@@ -149,6 +157,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 33dac9382d870de46bb7471e91a73ad0, type: 2}
+    - target: {fileID: 129977550234810152, guid: effb7b49a7a233147a84cb2951d5cda4, type: 3}
+      propertyPath: m_TagString
+      value: Object
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: effb7b49a7a233147a84cb2951d5cda4, type: 3}
       propertyPath: m_Name
       value: Sofa
