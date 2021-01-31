@@ -167,9 +167,6 @@ public class HidingPlayerController : MonoBehaviour
         _newModel = (GameObject) Instantiate(Resources.Load("Models/" + name), 
             new Vector3(transform.position.x, transform.position.y, transform.position.z), 
             transform.rotation, transform);
-        _newModel.GetComponent<Rigidbody>().detectCollisions = false;
-        _newModel.GetComponent<Rigidbody>().useGravity = false;
-        
         GetComponent(_newModel);
     }
 

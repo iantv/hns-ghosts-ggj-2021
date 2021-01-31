@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class SceneController : MonoBehaviour
@@ -25,7 +26,7 @@ public class SceneController : MonoBehaviour
     public void SpawnHiding()
     {
         _playerTag = "HidingPlayer";
-        Instantiate(Resources.Load("HidingPlayerPrefab"), spawnPosition);
+        Instantiate(Resources.Load("HidingPlayerPrefab"), spawnPosition.position,quaternion.identity);
         selectCharacterPanel.alpha = 0;
         selectCharacterPanel.interactable = false;
         selectCharacterPanel.blocksRaycasts = false;
